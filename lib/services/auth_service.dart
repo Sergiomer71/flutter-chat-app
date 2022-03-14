@@ -14,9 +14,15 @@ class AuthService with ChangeNotifier {
   /*Debido a la seguridad nula, su variable debe inicializarse cuando se crea, 
   para solucionar esto, puede usar late para decirle que se inicializará 
   después de crearse pero antes de usarse:*/
+  // late final Usuario usuario;
+  // Usuario? usuario;
+  // late Usuario usuario;
 
-  late final Usuario usuario;
+  // Original
   // Usuario usuario;
+
+  late Usuario usuario;
+
   bool _autenticando = false;
 
   final _storage = new FlutterSecureStorage();
@@ -28,7 +34,7 @@ class AuthService with ChangeNotifier {
   }
 
   // Getters del token de forma estática
-  static Future<String?> getToken() async {
+  static Future<dynamic> getToken() async {
     final _storage = new FlutterSecureStorage();
     final token = await _storage.read(key: 'token');
     return token;

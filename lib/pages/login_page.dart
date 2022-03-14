@@ -1,4 +1,5 @@
 // import 'package:chat/services/auth_service.dart';
+import 'package:chat/services/socket_service.dart';
 import 'package:chat/widgets/boton_azul.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,6 +55,7 @@ class __FormState extends State<_Form> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+    final socketService = Provider.of<SocketService>(context);
 
     return Container(
       margin: EdgeInsets.only(top: 40),
@@ -90,7 +92,7 @@ class __FormState extends State<_Form> {
                           emailCtrl.text.trim(), passCtrl.text.trim());
 
                       if (loginOk) {
-                        // TODO: Conectar a nuestro socket server
+                        socketService.connect();
                         Navigator.pushReplacementNamed(context, 'usuarios');
                       } else {
                         // Mostrar alerta
